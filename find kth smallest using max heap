@@ -1,0 +1,12 @@
+import heapq
+
+def findKthSmallest(nums, k):
+    heap = []                              # Create an empty max heap
+
+    for num in nums:                       # Visit every element in the array
+        heapq.heappush(heap, -num)         # Add negative of num to simulate max heap
+
+        if len(heap) > k:                  # If heap contains more than k elements
+            heapq.heappop(heap)            # Remove the largest original element
+
+    return -heap[0]                        # Convert negative value back to positive
